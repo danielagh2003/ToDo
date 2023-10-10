@@ -1,0 +1,5 @@
+$task = $taskRepository->find($id);
+$form = $this->createForm(TaskType::class, $task);
+return $this->render('task/index.html.twig',[
+'form' => $form,
+]);
