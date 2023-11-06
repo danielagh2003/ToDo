@@ -15,18 +15,7 @@ use Doctrine\ORM\EntityManagerInterface;
 
 class TaskController extends AbstractController
 {
-    #[Route('/list', name: 'list', methods:["GET" ,"POST"])]
-    public function list(): Response
-    {
-        return new Response("Hello World!");
-    }
-
-    #[Route('/view/{id}', name: 'view')]
-    public function view(int $id): Response
-    {
-        return new Response($id);
-    }
-    #[Route('/task', name: 'app_student')]
+    #[Route('/task', name: 'app_task')]
     public function index(): Response
     {
         return $this->render('task/index.html.twig', [
@@ -50,7 +39,7 @@ class TaskController extends AbstractController
         $entityManager->persist($task);
         $entityManager->flush();
     
-        return $this->redirectToRoute('taskupdate', ['id' => $task->getId()]); // Redirecționați corect la ruta 'taskupdate'
+        return $this->redirectToRoute('taskupdate', ['id' => $task->getId()]);
     }
 
     #[Route('/task/update/{id}', name: 'taskupdate')]
@@ -75,6 +64,7 @@ class TaskController extends AbstractController
         $entityManager->remove($task);
         $entityManager->flush();
     
-        return $this->redirectToRoute('taskcreate'); // Redirecționați corect la ruta 'taskcreate'
+        return $this->redirectToRoute('taskcreate'); 
     }
 }    
+?>
